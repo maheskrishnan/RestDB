@@ -37,36 +37,37 @@ the above line provides the following routes in expressJs Application.
 
 
 
-### Consuming REST API with jQuery
+### Accessing REST API with jQuery
 
-you can use jQuery to use the rest urls like this
 
-```html
-  $.getJSON("/api/todos/876",
-         function(data) {
-            alert(data);
-          });
-
-```
-
-Creating a resource with jQuery & POST
+Creating a resource with POST
 
 ```javascript
 $.ajax({
     type: 'post',
-    url: '/api/cheeses',
+    url: '/myapi/cheeses',
     data: { name: 'Cheddar', age: '1 day' }
 });
 ```
 
-Updating a resource with jQuery
+Updating a resource with PUT
 
 ```javascript
 $.ajax({
     type: 'put',
-    url: '/api/cheeses/13579',
+    url: '/myapi/cheeses/13579',
     data: { name: 'Cheddar', age: '10 day' }
 });
+```
+
+Reading a resource with GET
+
+```javascript
+  $.getJSON("/myapi/cheeses/13579",
+         function(data) {
+            alert(data);
+          });
+
 ```
 
 
