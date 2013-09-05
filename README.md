@@ -1,4 +1,4 @@
-## RestDB - Filesystem based expressjs Middleware
+## RestDB - Expressjs Middleware
 
 
 Simple filesystem based rest database. designed as a expressjs middleware.
