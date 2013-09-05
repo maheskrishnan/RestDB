@@ -4,7 +4,7 @@ RestDB - Filesystem based expressjs Middleware
 Simple filesystem based rest database. designed as a expressjs middleware.
 
 
-```
+```javascript
 var fs      =   require('fs');
 var path    =   require('path');
 var express =   require('express');
@@ -64,7 +64,7 @@ var server = app.listen(port);
 
 Sample Todo app developed with Angular JS
 
-```
+```html
 <!DOCTYPE html>
 <html ng-app="todoapp">
 <head>
