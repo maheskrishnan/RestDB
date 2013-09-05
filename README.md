@@ -8,7 +8,7 @@ Simple filesystem based rest database. designed as a expressjs middleware.
 #### Note
 
 * This is NOT a stable, scalable, production ready database. 
-* Use only for learning frameworks like BackboneJS or AngularJS.
+* Use only for simple applications or for learning frameworks like BackboneJS or AngularJS.
 * This middleware stores data in filesystem under the specified data-directory.
 
 
