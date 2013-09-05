@@ -1,7 +1,7 @@
 ## RestDB - Expressjs Middleware
 
 
-Simple filesystem based rest database. designed as a expressjs middleware.
+Simple filesystem based REST database. designed as a expressjs middleware.
 
 
 
