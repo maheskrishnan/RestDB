@@ -1,0 +1,19 @@
+{
+    "name": "restdb",
+    "version": "0.1.0",
+    "description": "Simple filesystem based database api middleware",
+    "main": "rest-api-middleware.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/maheskrishnan/RestDB.git"
+    },
+    "keywords": [
+        "expressjs",
+        "rest",
+        "api",
+        "restapi",
+        "middleware"
+    ],
+    "author": "maheswaran krishnan",
+    "license": "BSD"
+}
