@@ -115,15 +115,6 @@ app.configure(function() {
         owner: fnGetOwnerId
     };
 
-
-    // creates the following rest routes.
-    // GET    /:entity
-    // GET    /:entity/:id
-    // PUT    /:entity/:id
-    // POST   /:entity
-    // DELETE /:entity/:id
-    //        /admin/entities
-
 	app.use('/api', restdb(rest_api_options).middleware);
 
 });
