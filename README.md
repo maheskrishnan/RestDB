@@ -62,3 +62,68 @@ var server = app.listen(port);
 
 ```
 
+Sample Todo app developed with Angular JS
+
+```
+<!DOCTYPE html>
+<html ng-app="todoapp">
+<head>
+    <title>ToDo List using AngularJs</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular-resource.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="todo">
+    <h3>Tasks</h3>
+    <p>
+        <span>New task:</span>
+        <input type="text" ng-model="newtodo.title"/>
+        <button class="btnAdd" ng-click="addTodo(newtodo)">Add</button>
+    </p>
+    <ul>
+        <li ng-repeat="todo in todos">
+            {{todo.id}}
+            <input type="text" id="title" ng-model="todo.title"/>
+            <button class="btnUpdateTodo" ng-click="updateTodo(todo)">Update</button>
+            <button class="btnDeleteTodo" ng-click="deleteTodo(todo, $index)">X</button>
+        </li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+
+var app = angular.module('todoapp', ['ngResource']);
+
+function todo($scope, $resource) {
+
+    var ToDo = $resource('/api/actions/:id', {id: "@id"}, {'put': {method:'PUT'}} );
+
+    $scope.todos = [];
+
+    ToDo.query(function(todos) { $scope.todos = todos; });
+
+    $scope.addTodo = function(newtodo){
+        ToDo.save(newtodo, function(t){
+            $scope.todos.push(t);
+        });
+    };
+    $scope.updateTodo = function(todo){
+        ToDo.put(todo, function(t){ });
+    };
+    $scope.deleteTodo = function(todo, idx){
+        ToDo.delete({id:todo.id}, function(){
+            $scope.todos.splice(idx, 1);
+        });
+    };
+
+}
+
+</script>
+
+
+</body>
+</html>
+```
+
