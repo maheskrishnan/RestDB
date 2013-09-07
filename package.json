@@ -1,6 +1,6 @@
 {
     "name": "restdb",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "Simple filesystem based database api middleware",
     "main": "rest-api-middleware.js",
     "repository": {
