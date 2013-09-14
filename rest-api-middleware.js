@@ -38,7 +38,7 @@ Entity.prototype.getEntities = function (strEntityName, callback) {
                 else {
                     var arrData = files.map(function(fileName){
                         var filePath = path.join(dataDirPath, fileName);
-                        var strFileContent = fs.readFileSync(filePath, {encoding:'utf8'});
+                        var strFileContent = fs.readFileSync(filePath);
                         return JSON.parse(strFileContent.toString('utf8'));
                     });
                     callback(null, arrData);
@@ -55,7 +55,7 @@ Entity.prototype.getEntity = function (strEntityName, strEntityId, callback) {
         else {
             fs.readFile(dataFilePath, function(err, data){
                 if (err) callback(err, null);
-                else callback(null, JSON.parse(data.toString('utf-8')));
+                else callback(null, JSON.parse(data.toString('utf8')));
             });
         }
     });
@@ -87,7 +87,7 @@ Entity.prototype.createEntityWithGivenId = function (strEntityName, objEntity, c
     var entityFilePath = path.join(entityDirPath, ''+strEntityId+'.json');
 
     function createEntityFile(filePath, data, callback){
-        fs.writeFile(filePath, JSON.stringify(data), function(err){
+        fs.writeFile(filePath, JSON.stringify(data), 'utf8', function(err){
             if (err) callback(err, data);
             else {
                 callback(null, data);
@@ -128,11 +128,15 @@ Entity.prototype.deleteEntity = function (strEntityName, strEntityId, callback) 
 
 module.exports = function(rest_api_options){
 
+    if (!rest_api_options) rest_api_options = {};
+
     var fnDataDirectory = rest_api_options.datadir;
     var authenticate = rest_api_options.authenticate;
     var fnOwnerId = rest_api_options.owner;
 
-    if (authenticate==null) authenticate = function(req, res, next){next();};
+    if (!fnDataDirectory) fnDataDirectory = function(req, res, next){ return "data" };
+    if (!authenticate) authenticate = function(req, res, next){next();};
+    if (!fnOwnerId) fnOwnerId = function(req, res, next){ return '' };
 
     var express = require('express');
     var router = new express.Router();
@@ -146,7 +150,7 @@ module.exports = function(rest_api_options){
                 res.end('[]');
             }else{
                 res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify(arrEntity).toString('utf-8'));
+                res.end(JSON.stringify(arrEntity).toString('utf8'));
             }
         });
     });
@@ -160,7 +164,7 @@ module.exports = function(rest_api_options){
                 res.end('[]');
             }else{
                 res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify(arrEntity).toString('utf-8'));
+                res.end(JSON.stringify(arrEntity).toString('utf8'));
             }
         });
     });
@@ -175,7 +179,7 @@ module.exports = function(rest_api_options){
                 res.end('');
             }else{
                 res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify(objEntity).toString('utf-8'));
+                res.end(JSON.stringify(objEntity).toString('utf8'));
             }
         });
     });

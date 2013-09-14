@@ -1,7 +1,7 @@
 {
     "name": "restdb",
-    "version": "0.1.2",
-    "description": "Simple filesystem based database api middleware",
+    "version": "0.1.3",
+    "description": "Simple filesystem based RESTful database api middleware",
     "main": "rest-api-middleware.js",
     "repository": {
         "type": "git",
